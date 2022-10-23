@@ -2002,6 +2002,16 @@ const movies = [
     }
   ];
   
+const movies1 = [
+    {
+        title: 'The Shawshank Redemption',
+        year: 2007,
+        director: 'Frank Darabont',
+        duration: '2h 22min',
+        genre: ['Crime', 'Drama'],
+        score: 8
+    }
+];
   // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -2113,12 +2123,16 @@ function bestYearAvg(moviesArray) {
             return films.year === ano;
         });
         
-        let media = 0;
+        let media = 0.0;
         filmesAno.forEach((films) => {
+            //media += Math.round((films.score * 100) / 100);
             media += films.score;
+            console.log(films.year,films.title, films.score, media);
         });
+        //console.log(media);
         media /= filmesAno.length;
-        media = media.toFixed(3);
+        //media = media.toFixed(1);
+        media = Math.round(media * 100) / 100;
 
         mediaAnos.push({ano, media});
 
@@ -2130,10 +2144,10 @@ function bestYearAvg(moviesArray) {
         if (a.ano > b.title) return -1;
         if (a.ano < b.title) return 1;
     });
-    console.log(bestie);
+    //console.log(bestie);
 
     return `The best year was ${bestie[0].ano} with an average score of ${bestie[0].media}`;
 
     
 }
-console.log(bestYearAvg(movies));
+console.log(bestYearAvg(movies1));

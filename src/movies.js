@@ -90,7 +90,7 @@ function turnHoursToMinutes(moviesArray) {
 function bestYearAvg(moviesArray) {
 
     if (!moviesArray.length) return null;
-    
+
     //descobrir anos
     let years = [];
         
@@ -113,7 +113,8 @@ function bestYearAvg(moviesArray) {
             media += films.score;
         });
         media /= filmesAno.length;
-        media = media.toFixed(3);
+        media = Math.round(media * 100) / 100;
+
 
         mediaAnos.push({ano, media});
 
