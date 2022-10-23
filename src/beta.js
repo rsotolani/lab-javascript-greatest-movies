@@ -2091,9 +2091,49 @@ function turnHoursToMinutes(moviesArray) {
 
     return [...moviesMinutes];
 }
-console.log(turnHoursToMinutes(movies));
+//console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
+   
+    //descobrir anos
+    let years = [];
+    
+    for (let key of moviesArray) {
+        if (!years.includes(key.year)){
+            years.push(key.year);
+        } 
+    }
+    years.sort((a, b) =>  (a - b));
 
+    const mediaAnos = [];
+    for (let ano of years) {
+
+        const filmesAno = moviesArray.filter( (films) => {
+            return films.year === ano;
+        });
+        
+        let media = 0;
+        filmesAno.forEach((films) => {
+            media += films.score;
+        });
+        media /= filmesAno.length;
+        media = media.toFixed(3);
+
+        mediaAnos.push({ano, media});
+
+    }
+    
+    const bestie = mediaAnos.sort((a, b) => {
+        if (a.media - b.media > 0) return -1;
+        if (a.media - b.media < 0) return 1; 
+        if (a.ano > b.title) return -1;
+        if (a.ano < b.title) return 1;
+    });
+    console.log(bestie);
+
+    return `The best year was ${bestie[0].ano} with an average score of ${bestie[0].media}`;
+
+    
 }
+console.log(bestYearAvg(movies));
