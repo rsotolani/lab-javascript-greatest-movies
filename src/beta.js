@@ -2125,13 +2125,11 @@ function bestYearAvg(moviesArray) {
         
         let media = 0.0;
         filmesAno.forEach((films) => {
-            //media += Math.round((films.score * 100) / 100);
             media += films.score;
             console.log(films.year,films.title, films.score, media);
         });
         //console.log(media);
         media /= filmesAno.length;
-        //media = media.toFixed(1);
         media = Math.round(media * 100) / 100;
 
         mediaAnos.push({ano, media});
